@@ -13,28 +13,15 @@ const OutterInput = ({ n, onInput }) => {
 }
 
 export default function Home() {
-  // 进制数结果数组
-  const [numbers, setNumbers] = useState({
-    [1]: '',
-    [2]: '',
-    [3]: '',
-    [4]: '',
-  });
-
-  // 要处理哪些进制
-  const [keys, setKeys] = useState([1, 2, 3, 4]);
+  // 同步值
+  const [value, setValue] = useState('');
 
   // 响应input输入
   const onInput = (value) => {
-    // console.log('keys', keys);
-    setNumbers(keys.reduce((m, v) => {
-      // console.log('reduce', m, v);
-      m[v] = value;
-      return m;
-    }, {}));
+    setValue(value);
   };
 
-
+  // 失焦组件,每次输入完都会失去焦点
   const InnerInput = ({ n, onInput }) => {
     return (
       <>
@@ -46,8 +33,6 @@ export default function Home() {
     );
   }
 
-  console.log('numbers', numbers);
-
   return (
     <div>
       <Head>
@@ -58,16 +43,16 @@ export default function Home() {
 
 
       <label>输入1</label>
-      <input type='text' value={numbers[1]} onInput={e => onInput(e.target.value)} />
+      <input type='text' value={value} onInput={e => onInput(e.target.value)} />
       <br />
 
       <label>输入2</label>
-      <input type='text' value={numbers[2]} onInput={e => onInput(e.target.value)} />
+      <input type='text' value={value} onInput={e => onInput(e.target.value)} />
       <br />
 
-      <InnerInput n={numbers[3]} onInput={onInput} />
+      <InnerInput n={value} onInput={onInput} />
 
-      <OutterInput n={numbers[4]} onInput={onInput} />
+      <OutterInput n={value} onInput={onInput} />
 
     </div>
   )
