@@ -1,5 +1,5 @@
-# xkexp.nextjs
-nextjs试验场
+# xkexp.web
+web 试验场
 
 ## 项目结构
 ```
